@@ -15,7 +15,7 @@ struct MemoryGame<CardContent> {  // CardContent is a madeup don't care (generic
         
         cards = []  // That the reason cards is initialized with an empty array, which equals to Array<Card>() and [Card]()
         
-        for pairIndex in 0..<numberOfPairsOfCards {
+        for pairIndex in 0..<max(2,numberOfPairsOfCards) {
             let content = cardContentFactory(pairIndex)
             cards.append(Card(content: content))
             cards.append(Card(content: content))
@@ -26,8 +26,12 @@ struct MemoryGame<CardContent> {  // CardContent is a madeup don't care (generic
         
     }
     
+   mutating func shuffle() {
+        cards.shuffle()
+    }
+    
     struct Card {
-        var isFaceUp = false
+        var isFaceUp = true
         var isMatched = false
         let content: CardContent
     }
